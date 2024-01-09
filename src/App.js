@@ -1,20 +1,29 @@
-import { useState } from 'react';
+
 import './App.css';
-import MessageDisplay from './components/MessageDisplay';
-import MessageForm from './components/MessageForm';
+
+import { Route, Routes } from 'react-router-dom';
+
+import Form from './components/Form';
+import Planets from './components/Planets';
+import People from './components/People';
+import Home from './components/Home';
+import ParamsComponent from './components/ParamsComponent';
 
 
 function App() {
-  const [currentMsg, setCurrentMsg] = useState('There is no new message');
 
-  const youveGotEmail = (newMessage) => {
-    setCurrentMsg(newMessage)
-  }
+
   return (
     <div className='App1'>
-    <MessageForm  onMessage = {youveGotEmail}/>
-
-    <MessageDisplay  message= {currentMsg}/>
+      <Routes>
+        <Route path='/home' element={<Home />} />
+        <Route path='/:word' element={<ParamsComponent />} />
+        <Route path='/:number' element={<ParamsComponent />} />
+        <Route path='/:word/:color/:bgColor' element={<ParamsComponent />} />
+    
+        <Route path='/people/:id' element={<Planets />} />
+        <Route path='/people/:id' element={<People />} />
+      </Routes>
     </div>
   );
 }
